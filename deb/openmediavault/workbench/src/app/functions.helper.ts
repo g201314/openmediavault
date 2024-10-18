@@ -525,6 +525,12 @@ nunjucksEnv.addFilter('map', (value: Array<any>, filter: string, ...filterArgs: 
   return _.map(value, (part) => filterFn.apply(this, [part, ...filterArgs]));
 });
 /**
+ * Note, this will override the built-in `slice` filter.
+ */
+nunjucksEnv.addFilter('slice', (value: Array<any>, start?: number, end?: number) =>
+  value.slice(start, end)
+);
+/**
  * Creates an array of own enumerable string keyed-value pairs.
  */
 nunjucksEnv.addFilter('entries', (value: Record<string, any>) => {
